@@ -1,0 +1,25 @@
+---
+
+- name: Install package
+  become: yes
+  apt:
+    name: git
+    state: present
+
+- name: Create git config directory
+  file:
+    path: ~/.config/git
+    state: directory
+
+- name: Copy git config file
+  copy:
+    src: files/git/config
+    dest: ~/.config/git/config
+
+- name: Add git prompt to bashrc
+  blockinfile:
+    block: "{{ lookup('file', './files/git/prompt') }}"
+    dest: ~/.bashrc
+
+# todo : create .gitconfig
+# todo : add stuff in .bashrc

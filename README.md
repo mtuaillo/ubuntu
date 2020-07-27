@@ -1,7 +1,10 @@
-Install web development environment on Ubuntu
+Tested on Ubuntu 20.04
 
-## Basic
-Setup LEMP stack: nginx, php 5.6, mysql 5.6 plus mongodb, composer, phpunit, phpcs, bower, less, uglify-js, uglifycss 
+# How to
 
-## Docker
-TODO
+Install Ansible: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu
+
+Launch playbook:
+```
+ansible-playbook playbook.yml -i inventories/local --ask-become-pass
+```

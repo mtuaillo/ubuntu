@@ -1,0 +1,12 @@
+---
+- name: Install clamav
+  become: yes
+  apt:
+    name: clamav
+    state: present
+
+- name: Install rkhunter
+  become: yes
+  apt:
+    name: rkhunter
+    state: present

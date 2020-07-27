@@ -1,0 +1,10 @@
+- name: Playbook
+  hosts: local
+
+  tasks:
+    - include: tasks/git.yml
+    - include: tasks/sublimetext.yml
+    - include: tasks/av.yml
+    - include: tasks/docker.yml
+    - include: tasks/encryptedfolder.yml
+    # - include: tasks/bash.yml
