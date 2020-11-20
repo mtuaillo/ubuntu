@@ -16,10 +16,15 @@
     src: files/git/config
     dest: ~/.config/git/config
 
+- name: Copy git ignore file
+  copy:
+    src: files/git/ignore
+    dest: ~/.config/git/.gitignore
+
+- name: Configure git ignore path
+  command: git config --global core.excludesfile ~/.config/git/.gitignore
+
 - name: Add git prompt to bashrc
   blockinfile:
     block: "{{ lookup('file', './files/git/prompt') }}"
     dest: ~/.bashrc
-
-# todo : create .gitconfig
-# todo : add stuff in .bashrc
