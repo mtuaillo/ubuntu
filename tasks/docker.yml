@@ -15,7 +15,6 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-# TODO: Move to a generic place (inventory?)
 - name: Store release
   command: lsb_release -cs
   register: release

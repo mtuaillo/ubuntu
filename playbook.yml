@@ -1,4 +1,4 @@
-- name: Playbook
+- name: Install development tools and docker stack
   hosts: local
 
   tasks:
