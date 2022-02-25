@@ -1,0 +1,9 @@
+- name: Store logged in username
+  command: whoami
+  changed_when: false
+  become: false
+  register: login_user
+
+- name: Store release
+  command: lsb_release -cs
+  register: release

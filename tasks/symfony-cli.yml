@@ -1,0 +1,11 @@
+---
+- name: Add symfony-cli repository
+  become: yes
+  ansible.builtin.shell: |
+    echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sources.list.d/symfony-cli.list
+
+- name: Install symfony-cli package
+  become: yes
+  apt:
+    pkg:
+      - symfony-cli

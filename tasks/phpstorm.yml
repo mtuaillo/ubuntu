@@ -1,0 +1,5 @@
+---
+- name: Add symfony-cli repository
+  become: yes
+  ansible.builtin.shell: |
+    snap install --classic phpstorm

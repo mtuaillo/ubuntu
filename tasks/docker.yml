@@ -15,10 +15,6 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Store release
-  command: lsb_release -cs
-  register: release
-
 - name: Add Docker repository
   become: yes
   apt_repository:
@@ -32,3 +28,25 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+
+- name: Create Docker group
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: Add current user to Docker group
+  become: yes
+  user:
+    name: "{{ login_user.stdout }}"
+    groups: docker
+    append: yes
+
+# - name: Update user groups
+# newgrp docker
+
+- name: Install Docker compose
+  get_url: 
+    url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 'u+x,g+x'
