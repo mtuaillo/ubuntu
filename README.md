@@ -1,8 +1,8 @@
-Tested on Ubuntu 20.04
+Tested on Ubuntu 22.04
 
 # How to
 
-Install Ansible: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu
+Install Ansible Core: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu
 
 Launch playbook:
 ```

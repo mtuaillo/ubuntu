@@ -1,8 +1,14 @@
 ---
-- name: Add symfony-cli repository
+- name: Download symfony-cli repository installer
+  get_url:
+    url: https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh
+    dest: /tmp
+    mode: '0700'
+
+- name: Configure symfony-cli repository
   become: yes
   ansible.builtin.shell: |
-    echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | sudo tee /etc/apt/sources.list.d/symfony-cli.list
+    /tmp/symfony-stable_deb.sh
 
 - name: Install symfony-cli package
   become: yes
