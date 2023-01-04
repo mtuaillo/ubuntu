@@ -12,4 +12,4 @@
     - include_tasks: tasks/composer.yml
     - include_tasks: tasks/symfony-cli.yml
     - include_tasks: tasks/phpstorm.yml
-
+    - include_tasks: tasks/pgclient.yml
