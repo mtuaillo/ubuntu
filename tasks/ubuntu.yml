@@ -1,0 +1,6 @@
+---
+- name: Install ubuntu-restricted-extras
+  become: yes
+  apt:
+    name: ubuntu-restricted-extras
+    state: present
