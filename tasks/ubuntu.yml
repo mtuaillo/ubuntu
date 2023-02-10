@@ -4,3 +4,9 @@
   apt:
     name: ubuntu-restricted-extras
     state: present
+
+- name: Install gthumb
+  become: yes
+  apt:
+    name: gthumb
+    state: present

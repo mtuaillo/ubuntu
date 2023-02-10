@@ -1,0 +1,11 @@
+---
+- name: Install fish
+  become: yes
+  apt:
+    name: fish
+    state: present
+
+- name: Add Task runner
+  become: yes
+  ansible.builtin.shell: |
+    snap install --classic task
