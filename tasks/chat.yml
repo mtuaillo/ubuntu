@@ -1,0 +1,5 @@
+---
+- name: Install Slack client
+  become: yes
+  ansible.builtin.shell: |
+    snap install slack

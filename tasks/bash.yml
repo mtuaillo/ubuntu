@@ -9,3 +9,9 @@
   become: yes
   ansible.builtin.shell: |
     snap install --classic task
+
+- name: Install btop
+  become: yes
+  apt:
+    name: btop
+    state: present

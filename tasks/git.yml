@@ -15,11 +15,13 @@
   copy:
     src: files/git/config
     dest: ~/.config/git/config
+    force: no
 
 - name: Copy git ignore file
   copy:
     src: files/git/ignore
     dest: ~/.config/git/.gitignore
+    force: no
 
 - name: Configure git ignore path
   command: git config --global core.excludesfile ~/.config/git/.gitignore

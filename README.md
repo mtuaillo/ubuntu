@@ -1,4 +1,10 @@
-Tested on Ubuntu 22.04
+Setup PHP development environment on Ubuntu:
+- install PHPStorm
+- install Docker
+- install Composer & Symfony CLI
+- create a new SSH key, if not already existing
+
+Tested on Ubuntu LTS 22.04
 
 # How to
 
