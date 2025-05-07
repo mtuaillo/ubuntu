@@ -10,8 +10,20 @@
   ansible.builtin.shell: |
     snap install --classic task
 
+- name: Install curl
+  become: yes
+  apt:
+    name: curl
+    state: present
+
 - name: Install btop
   become: yes
   apt:
     name: btop
+    state: present
+
+- name: Install fastfetch
+  become: yes
+  apt:
+    name: fastfetch
     state: present
