@@ -15,3 +15,7 @@
   apt:
     pkg:
       - symfony-cli
+
+- name: Enable fish completion for symfony command
+  ansible.builtin.shell: |
+    symfony self:completion fish | sudo tee /etc/fish/completions/symfony.fish
