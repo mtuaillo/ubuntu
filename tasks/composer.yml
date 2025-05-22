@@ -3,14 +3,33 @@
   become: yes
   apt:
     pkg:
-      - php8.2-cli
+      - php-cli
 
-- name: Download composer phar
-  ansible.builtin.shell: |
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    php composer-setup.php
-    php -r "unlink('composer-setup.php');"
+- name: Download composer installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/composer-setup.php
+    mode: '0755'
+
+- name: Check composer installer signature
+  ansible.builtin.command: php -r "echo hash_file('sha384', '/tmp/composer-setup.php');"
+  register: installer_hash
+  changed_when: false
+
+- name: Verify composer installer
+  ansible.builtin.fail:
+    msg: "Composer installer corrupt"
+  when: installer_hash.stdout != 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6'
+
+- name: Install composer
+  ansible.builtin.command: php /tmp/composer-setup.php
+  args:
+    creates: composer.phar
+
+- name: Remove composer installer
+  ansible.builtin.file:
+    path: /tmp/composer-setup.php
+    state: absent
 
 - name: Copy composer in bin folder
   become: yes

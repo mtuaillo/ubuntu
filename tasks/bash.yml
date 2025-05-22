@@ -21,9 +21,3 @@
   apt:
     name: btop
     state: present
-
-- name: Install fastfetch
-  become: yes
-  apt:
-    name: fastfetch
-    state: present
