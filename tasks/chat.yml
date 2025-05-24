@@ -1,5 +1,8 @@
 ---
 - name: Install Slack client
   become: yes
-  ansible.builtin.shell: |
-    snap install slack
+  ansible.builtin.shell: snap install slack
+  args:
+    creates: /snap/bin/slack
+  register: slack_install_result
+  failed_when: slack_install_result.rc != 0 and 'already installed' not in slack_install_result.stderr

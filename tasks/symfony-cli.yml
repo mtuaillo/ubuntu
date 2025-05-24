@@ -2,13 +2,19 @@
 - name: Download symfony-cli repository installer
   get_url:
     url: https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh
-    dest: /tmp
+    dest: /tmp/symfony-stable_deb.sh
     mode: '0700'
 
 - name: Configure symfony-cli repository
   become: yes
-  ansible.builtin.shell: |
-    /tmp/symfony-stable_deb.sh
+  ansible.builtin.shell: /tmp/symfony-stable_deb.sh
+  args:
+    creates: /etc/apt/sources.list.d/symfony-stable.list
+
+- name: Update apt cache after adding Symfony repository
+  become: yes
+  apt:
+    update_cache: yes
 
 - name: Install symfony-cli package
   become: yes
@@ -19,3 +25,6 @@
 - name: Enable fish completion for symfony command
   ansible.builtin.shell: |
     symfony self:completion fish | sudo tee /etc/fish/completions/symfony.fish
+  args:
+    creates: /etc/fish/completions/symfony.fish
+  when: ansible_facts['os_family'] == "Debian"

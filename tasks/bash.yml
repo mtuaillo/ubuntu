@@ -7,8 +7,11 @@
 
 - name: Add Task runner
   become: yes
-  ansible.builtin.shell: |
-    snap install --classic task
+  ansible.builtin.shell: snap install --classic task
+  args:
+    creates: /snap/bin/task
+  register: task_install_result
+  failed_when: task_install_result.rc != 0 and 'already installed' not in task_install_result.stderr
 
 - name: Install curl
   become: yes

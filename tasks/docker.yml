@@ -9,10 +9,16 @@
       - gnupg-agent
       - software-properties-common
 
-- name: Install GPG key for Docker
-  become: yes    
-  apt_key:
+- name: Download Docker GPG key
+  become: yes
+  get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /tmp/docker-gpg-key
+
+- name: Add Docker GPG key
+  become: yes
+  apt_key:
+    file: /tmp/docker-gpg-key
     state: present
 
 - name: Add Docker repository
@@ -20,6 +26,11 @@
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release.stdout }} stable
     state: present
+
+- name: Update apt cache after adding Docker repository
+  become: yes
+  apt:
+    update_cache: yes
 
 - name: Install Docker packages
   become: yes

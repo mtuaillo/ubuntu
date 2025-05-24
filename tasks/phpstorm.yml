@@ -1,5 +1,8 @@
 ---
 - name: Install PHP Storm
   become: yes
-  ansible.builtin.shell: |
-    snap install --classic phpstorm
+  ansible.builtin.shell: snap install --classic phpstorm
+  args:
+    creates: /snap/bin/phpstorm
+  register: phpstorm_install_result
+  failed_when: phpstorm_install_result.rc != 0 and 'already installed' not in phpstorm_install_result.stderr

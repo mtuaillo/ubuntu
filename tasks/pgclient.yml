@@ -1,7 +1,13 @@
-- name: Install GPG key for Postgresql repo
-  become: yes    
-  apt_key:
+- name: Download PostgreSQL GPG key
+  become: yes
+  get_url:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    dest: /tmp/postgresql-gpg-key
+
+- name: Add PostgreSQL GPG key
+  become: yes
+  apt_key:
+    file: /tmp/postgresql-gpg-key
     state: present
 
 - name: Add Postgresql repository
@@ -9,6 +15,11 @@
   apt_repository:
     repo: deb http://apt.postgresql.org/pub/repos/apt {{ release.stdout }}-pgdg main
     state: present
+
+- name: Update apt cache after adding PostgreSQL repository
+  become: yes
+  apt:
+    update_cache: yes
 
 - name: Install PG client
   become: yes

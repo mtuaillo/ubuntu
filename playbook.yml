@@ -1,6 +1,9 @@
 - name: Install development tools and docker stack
   hosts: local
 
+  collections:
+    - community.general
+
   tasks:
     - include_tasks: vars.yml
     - include_tasks: tasks/git.yml
