@@ -1,0 +1,12 @@
+---
+- name: Install NodeJS
+  become: yes
+  apt:
+    pkg:
+      - nodejs
+      - npm
+
+- name: Install "anthropic-ai/claude-code" node.js package globally.
+  become: yes
+  ansible.builtin.shell: |
+    npm install -g @anthropic-ai/claude-code

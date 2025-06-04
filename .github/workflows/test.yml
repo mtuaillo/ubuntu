@@ -17,6 +17,7 @@ jobs:
           sudo apt install ansible-core
       - name: Launch playbook
         run: |
+          ansible-galaxy collection install community.general
           ansible-playbook playbook.yml -i inventories/local --ask-become-pass
       - name: Check installs
         run: |
@@ -27,3 +28,5 @@ jobs:
           php --version
           docker --version
           symfony -V
+          nodejs --version
+          npm --version
