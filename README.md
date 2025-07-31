@@ -10,10 +10,13 @@ Tested on Ubuntu LTS 22.04
 
 # How to
 
-Install Ansible Core: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu
+Install Ansible Core & Git:
+```bash
+sudo apt install git ansible-core
+```
 
 Launch playbook:
-```
+```bash
 ansible-galaxy collection install community.general
 ansible-playbook playbook.yml -i inventories/local --ask-become-pass
 ```
