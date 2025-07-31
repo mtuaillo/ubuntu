@@ -6,9 +6,7 @@
 
 - name: Add PostgreSQL GPG key
   become: yes
-  apt_key:
-    file: /tmp/postgresql-gpg-key
-    state: present
+  ansible.builtin.shell: cat /tmp/postgresql-gpg-key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/postgresql.gpg > /dev/null
 
 - name: Add Postgresql repository
   become: yes
