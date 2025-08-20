@@ -4,6 +4,7 @@
   apt:
     pkg:
       - php-cli
+      - php-xml
 
 - name: Download composer installer
   get_url:

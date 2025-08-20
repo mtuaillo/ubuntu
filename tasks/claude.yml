@@ -6,6 +6,7 @@
       - nodejs
       - npm
 
+# TODO install npm package locally
 - name: Install "anthropic-ai/claude-code" node.js package globally.
   become: yes
   ansible.builtin.shell: |
