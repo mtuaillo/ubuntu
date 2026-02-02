@@ -18,4 +18,3 @@
     - include_tasks: tasks/phpstorm.yml
     - include_tasks: tasks/pgclient.yml
     - include_tasks: tasks/chat.yml
-    - include_tasks: tasks/claude.yml

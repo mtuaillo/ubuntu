@@ -28,5 +28,3 @@ jobs:
           php --version
           docker --version
           symfony -V
-          nodejs --version
-          npm --version

@@ -9,6 +9,7 @@
       - gnupg-agent
       - software-properties-common
 
+# TODO: use ansible.builtin.deb822_repository
 - name: Download Docker GPG key
   become: yes
   get_url:
@@ -61,3 +62,32 @@
   apt:
     pkg:
       - docker-compose-plugin
+
+# Docker Desktop (for Claude sandbox)
+- name: Check if Docker Desktop is installed
+  ansible.builtin.command: dpkg -s docker-desktop
+  register: docker_desktop_check
+  failed_when: false
+  changed_when: false
+
+- name: Download Docker Desktop
+  become: yes
+  get_url:
+    url: https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb
+    dest: /tmp/docker-desktop-amd64.deb
+    mode: '0644'
+  when: docker_desktop_check.rc != 0
+
+- name: Install Docker Desktop
+  become: yes
+  apt:
+    deb: /tmp/docker-desktop-amd64.deb
+    state: present
+  when: docker_desktop_check.rc != 0
+
+- name: Clean up Docker Desktop installer
+  become: yes
+  file:
+    path: /tmp/docker-desktop-amd64.deb
+    state: absent
+  when: docker_desktop_check.rc != 0
