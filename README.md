@@ -1,12 +1,12 @@
-Setup PHP development environment on Ubuntu:
-- install git, fish
+Ansible playbook to setup PHP development environment on Ubuntu:
+- install fish as default shell
+- install git with config
 - install PHPStorm
-- install Docker
+- install Docker and Docker Desktop
 - install Composer & Symfony CLI
-- install Claude Code
 - create a new SSH key, if not already existing
 
-Tested on Ubuntu LTS 22.04
+Tested on Ubuntu LTS 24.04 LTS, Ubuntu Latest
 
 # How to
 
