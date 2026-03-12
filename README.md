@@ -13,10 +13,15 @@ Tested on Ubuntu LTS 24.04 LTS, Ubuntu Latest
 Install Ansible Core & Git:
 ```bash
 sudo apt install git ansible-core
+ansible-galaxy collection install community.general
 ```
 
-Launch playbook:
+Launch playbook (Ubuntu 24.04 LTS and older):
 ```bash
-ansible-galaxy collection install community.general
 ansible-playbook playbook.yml -i inventories/local --ask-become-pass
+```
+
+Launch playbook (Ubuntu 25.10 and more recent):
+```bash
+ansible-playbook playbook.yml -i inventories/local --ask-become-pass -e "ansible_become_exe=/usr/bin/sudo.ws"
 ```
