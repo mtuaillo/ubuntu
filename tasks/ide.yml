@@ -1,0 +1,8 @@
+---
+- name: Install VSCodium
+  ansible.builtin.import_tasks: tasks/vscodium.yml
+  when: ide_choice == "vscodium"
+
+- name: Install PHPStorm
+  ansible.builtin.import_tasks: tasks/phpstorm.yml
+  when: ide_choice == "phpstorm"

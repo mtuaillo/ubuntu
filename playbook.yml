@@ -4,6 +4,12 @@
   collections:
     - community.general
 
+  vars_prompt:
+    - name: ide_choice
+      prompt: "Which IDE ? (vscodium/phpstorm/none)"
+      private: false
+      default: "none"
+
   tasks:
     - include_tasks: vars.yml
     - include_tasks: tasks/apt.yml
@@ -15,6 +21,6 @@
     - include_tasks: tasks/docker.yml
     - include_tasks: tasks/composer.yml
     - include_tasks: tasks/symfony-cli.yml
-    - include_tasks: tasks/phpstorm.yml
+    - include_tasks: tasks/ide.yml
     - include_tasks: tasks/pgclient.yml
     - include_tasks: tasks/chat.yml
