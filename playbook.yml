@@ -24,3 +24,5 @@
     - include_tasks: tasks/ide.yml
     - include_tasks: tasks/pgclient.yml
     - include_tasks: tasks/chat.yml
+    - include_tasks: tasks/build.yml
+

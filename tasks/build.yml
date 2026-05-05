@@ -1,0 +1,7 @@
+---
+- name: Install tools for build and compilations
+  become: yes
+  apt:
+    name: build-essential
+    state: present
+
